@@ -8,7 +8,7 @@
   --glass-bg: rgba(255, 255, 255, 0.45);
   --glass-border: rgba(255, 255, 255, 0.6);
   --glass-shadow: 0 8px 32px 0 rgba(63, 115, 179, 0.15);
-  --glass-blur: blur(12px);
+  --glass-blur: blur(3px);
 
   /* --- TYPOGRAPHY & TEXT COLORS --- */
   --text-dark: #1e3a5f;
@@ -44,29 +44,19 @@ body {
 }
 
 /* =========================================
-   COVER 
+   cover
    ========================================= */
 
 #cover-page {
-  background-image: url("assets/fotocover.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* Menghapus background gambar */
+  background: none;
+  /* Membiarkan transparan agar animasi blobs (bulatan bergerak) di belakangnya terlihat */
 }
 
+/* Sembunyikan cover-gradient karena kita tidak butuh efek gelap lagi */
+.cover-gradient,
 .cover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.95) 100%
-  );
-  z-index: 1;
+  display: none;
 }
 
 .full-height {
@@ -86,9 +76,9 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Mengubah ini agar konten lebih berkumpul di tengah */
   align-items: center;
-  padding: 60px 20px 30px 20px; /* Padding bawah dikecilkan agar bisa lebih turun */
-  color: #ffffff;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -97,8 +87,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: auto; /* Trik agar mendorong bagian bawah (cover-bottom) sampai maksimal ke bawah */
-  margin-top: -50px;
+  margin-bottom: 40px; /* Memberi jarak ke hitungan mundur */
 }
 
 .subtitle-new {
@@ -106,19 +95,17 @@ body {
   font-size: 13px;
   letter-spacing: 3px;
   margin-bottom: 10px;
-  font-style: italic;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  color: #f784c5; /* Warna biru redup */
 }
 
 .title-names-new {
   font-family: var(--font-heading);
-  color: var(--color-primary);
-  font-size: 35px;
+  font-size: 48px;
   font-style: italic;
   font-weight: normal;
   line-height: 1.1;
-  margin-top: 2px;
-  text-shadow: 2px 2px 6px rgba(12, 10, 10, 0.99);
+  color: var(--color-primary); /* Warna biru tema */
 }
 
 /* --- POSISI BAWAH --- */
@@ -129,91 +116,90 @@ body {
   align-items: center;
 }
 
-/* --- HITUNGAN MUNDUR --- */
+/* --- HITUNGAN MUNDUR (KACA TERANG) --- */
 .countdown-circles {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 15px; /* Jarak dengan kotak tamu diperkecil */
+  margin-bottom: 30px;
 }
 
 .circle {
-  width: 60px; /* Dikecilkan sedikit agar estetik */
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  background: var(--glass-bg: rgba(255, 255, 255, 0.45) ;);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: var(--glass-bg); /* Kaca bening/putih transparan */
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glass-shadow);
+  color: var(--color-primary); /* Angka warna biru */
 }
 
 .circle span {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 1;
 }
 
 .circle p {
-  font-size: 9px;
-  margin-top: 4px;
+  font-size: 10px;
+  margin-top: 3px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* --- INFO TAMU (KOTAK KACA GELAP) --- */
+/* --- INFO TAMU (KOTAK KACA TERANG) --- */
 .guest-info-new {
-  background: rgba(0, 0, 0, 0.4); /* Efek gelap transparan */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Garis pinggir tipis */
-  backdrop-filter: blur(8px); /* Efek blur/kaca */
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 15px; /* Sudut membulat */
-  padding: 15px 30px; /* Jarak ke dalam kotak */
-  margin-bottom: 20px;
+  background: var(--glass-bg); /* Kaca bening */
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-glass);
+  padding: 20px 30px;
+  margin-bottom: 25px;
   width: 85%;
   max-width: 320px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glass-shadow);
   font-size: 13px;
   line-height: 1.6;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  color: var(--text-dark); /* Warna teks isi pakai biru gelap */
 }
 
 .guest-info-new p {
-  margin: 0; /* Menghilangkan jarak bawaan paragraf agar lebih rapat */
+  margin: 0;
 }
 
 .guest-info-new h3 {
   font-family: var(--font-heading);
-  font-size: 22px;
-  margin: 8px 0;
-  color: var(--color-primary);
+  font-size: 24px;
+  margin: 10px 0;
+  color: var(--color-primary); /* Nama tamu pakai warna primary */
 }
 
-/* --- TOMBOL COVER (BIRU TEMA) --- */
+/* --- TOMBOL COVER --- */
 #btn-buka {
-  background-color: var(
-    --color-primary
-  ); /* Menggunakan warna biru tema #3f73b3 */
+  background-color: var(--color-primary);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
   padding: 12px 40px;
   font-size: 14px;
   font-family: var(--font-body);
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--glass-shadow);
   transition: all 0.3s ease;
   font-weight: 500;
   letter-spacing: 1px;
 }
 
 #btn-buka:hover {
-  background-color: #2e5a90; /* Biru agak gelap saat disentuh */
+  background-color: #2e5a90;
 }
 
 /* =========================================
@@ -544,4 +530,154 @@ body {
 
 .floating-music.paused {
   background: #7f8c8d; /* Berubah abu-abu saat musik mati */
+}
+
+/* =========================================
+   EFEK BUNGA & ROMANTIS (TAMBAHAN BARU)
+   ========================================= */
+
+/* --- 1. MEMBUAT KARTU & COVER MENJADI WADAH BINGKAI BUNGA --- */
+/* (Tambahkan .cover-content di sini) */
+.glass-card.floral-frame,
+.cover-content.floral-frame {
+  position: relative;
+  overflow: hidden; /* Mencegah bunga meluber jauh keluar dari kartu/cover */
+}
+
+/* --- 2. GAYA DASAR BUNGA KARTU & COVER (FRAME FLORALS) --- */
+.card-flower {
+  position: absolute;
+  z-index: -1; /* Berada di dalam lapisan kaca/cover, tapi di belakang teks */
+  width: 140px; /* Ukuran bunga. Bisa diubah sesuai selera */
+  opacity: 0.9;
+  pointer-events: none; /* Agar tidak menghalangi tombol atau form saat diklik */
+}
+
+/* --- 3. POSISI SPESIFIK BUNGA --- */
+.card-flower.top-left {
+  top: -10px;
+  left: -10px;
+}
+
+.card-flower.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  /* Hapus rotasi bawaan, biarkan gambar asli yang mengatur bentuknya */
+}
+
+/* KHUSUS UNTUK COVER: Sesuaikan ukuran dan rotasi agar pas di layar besar */
+.cover-content .card-flower {
+  width: 220px; /* Dibesarkan sedikit agar sudutnya lebih penuh */
+  opacity: 0.8;
+}
+
+.cover-content .card-flower.top-left {
+  top: -25px; /* Ditarik ke atas agar garis potongannya hilang */
+  left: -25px; /* Ditarik ke kiri */
+  transform: none; /* HAPUS rotasi, gunakan bentuk asli gambar */
+}
+
+.cover-content .card-flower.bottom-right {
+  bottom: -25px; /* Ditarik ke bawah */
+  right: -25px; /* Ditarik ke kanan */
+  transform: none; /* HAPUS rotasi, gunakan bentuk asli gambar */
+}
+
+/* --- KELOPAK BUNGA JATUH (PURE CSS) --- */
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  background-color: #ffb6c1;
+  border-radius: 15px 0 15px 0;
+  opacity: 0.6;
+  box-shadow: 0 0 5px rgba(255, 182, 193, 0.5);
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   FOOTER COPYRIGHT (TAMBAHAN BARU)
+   ========================================= */
+
+.footer-copyright {
+  text-align: center;
+  padding: 30px 20px 40px; /* Ruang bernapas di bawah */
+  margin-top: 20px;
+  position: relative;
+  z-index: 2; /* Memastikan di atas animasi background */
+}
+
+.footer-divider {
+  width: 40%;
+  margin: 0 auto 20px auto;
+  background-color: var(--color-secondary); /* Warna biru yang lebih muda */
+  height: 1px;
+  opacity: 0.5;
+}
+
+.footer-copyright .couple-name {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: var(--color-primary);
+  font-style: italic;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.copyright-text {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.created-by {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* --- GAYA UNTUK LINK SOSMED PEMBUAT --- */
+.sosmed-link {
+  color: var(--color-primary); /* Memakai warna biru utama tema kamu */
+  text-decoration: none; /* Menghilangkan garis bawah bawaan */
+  font-weight: 600; /* Dibuat sedikit tebal agar menonjol */
+  transition: all 0.3s ease;
+}
+
+.sosmed-link:hover {
+  color: var(
+    --color-secondary
+  ); /* Berubah warna jadi biru muda saat kursor diarahkan */
+  text-decoration: underline; /* Muncul garis bawah saat di-hover sebagai indikator bisa diklik */
 }

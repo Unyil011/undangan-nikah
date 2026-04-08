@@ -9,7 +9,7 @@ AOS.init({
 });
 
 // --- 2. HITUNGAN MUNDUR (COUNTDOWN) ---
-const countDownDate = new Date("May 18, 2026 08:00:00").getTime();
+const countDownDate = new Date("May 25, 2026 08:00:00").getTime();
 const countdownInterval = setInterval(function () {
   const now = new Date().getTime();
   const distance = countDownDate - now;
@@ -213,3 +213,41 @@ form.addEventListener("submit", function (e) {
   currentPage = 1;
   renderUcapan();
 });
+
+// --- 6. EFEK KELOPAK BUNGA JATUH (FALLING PETALS) ---
+function createPetals() {
+  const petalsContainer = document.getElementById("falling-petals");
+  if (!petalsContainer) return;
+
+  // Pastikan kelopak muncul setelah tombol Buka Undangan diklik
+  const btnBuka = document.getElementById("btn-buka");
+  if (btnBuka) {
+    btnBuka.addEventListener("click", () => {
+      petalsContainer.classList.remove("hidden");
+    });
+  }
+
+  const petalCount = 35; // Jumlah kelopak bunga yang jatuh bersaman
+
+  for (let i = 0; i < petalCount; i++) {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+
+    // Random posisi (Kiri-Kanan), ukuran, dan kecepatan jatuh
+    const left = Math.random() * 100; // 0 - 100vw
+    const size = Math.random() * 10 + 10; // Ukuran 10px - 20px
+    const duration = Math.random() * 6 + 6; // Durasi jatuh 6s - 12s (Biar slow motion estetik)
+    const delay = Math.random() * 5; // Munculnya bergantian 0s - 5s
+
+    petal.style.left = `${left}vw`;
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size}px`;
+    petal.style.animationDuration = `${duration}s`;
+    petal.style.animationDelay = `${delay}s`;
+
+    petalsContainer.appendChild(petal);
+  }
+}
+
+// Jalankan fungsi saat web dimuat
+createPetals();
