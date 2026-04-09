@@ -533,6 +533,121 @@ body {
 }
 
 /* =========================================
+   WEDDING GIFT (KARTU BANK & COPY)
+   ========================================= */
+
+.gift-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  /* Animasi halus saat kontainer muncul */
+  animation: fadeInDown 0.5s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Desain Kartu Ala ATM --- */
+.bank-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.4)
+  );
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+}
+
+/* Dekorasi bayangan bulat di dalam kartu */
+.bank-card::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(63, 115, 179, 0.1); /* Warna biru transparan */
+  border-radius: 50%;
+}
+
+.bank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bank-name {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+/* Gambar kotak chip kuningan palsu */
+.chip {
+  width: 35px;
+  height: 25px;
+  background: #d4af37;
+  border-radius: 4px;
+  opacity: 0.8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to bottom right, #f3e5ab, #d4af37);
+}
+
+.bank-body .rek-number {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 3px; /* Jarak antar angka ala kartu ATM */
+  margin-bottom: 5px;
+  font-family: monospace; /* Font mesin ketik agar angka lurus */
+}
+
+.bank-body .rek-name {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* --- Tombol Copy --- */
+.btn-copy {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(63, 115, 179, 0.2);
+}
+
+.btn-copy:hover {
+  background: var(--color-secondary);
+}
+
+/* =========================================
    EFEK BUNGA & ROMANTIS (TAMBAHAN BARU)
    ========================================= */
 
@@ -680,4 +795,37 @@ body {
     --color-secondary
   ); /* Berubah warna jadi biru muda saat kursor diarahkan */
   text-decoration: underline; /* Muncul garis bawah saat di-hover sebagai indikator bisa diklik */
+}
+
+/* =========================================
+   LINK INSTAGRAM MEMPELAI (DENGAN LOGO)
+   ========================================= */
+
+.ig-link {
+  display: inline-flex; /* Menggunakan flex agar logo dan teks sejajar */
+  align-items: center; /* Meratakan secara vertikal */
+  justify-content: center;
+  gap: 5px; /* Jarak antara logo dan teks */
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+/* Mengatur ukuran logo SVG Instagram */
+.ig-logo {
+  width: 14px;
+  height: 14px;
+}
+
+.ig-link:hover {
+  color: var(--color-primary);
+}
+
+/* Membuat logo ikut berubah warna saat disentuh */
+.ig-link:hover .ig-logo {
+  stroke: var(--color-primary);
 }

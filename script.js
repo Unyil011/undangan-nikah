@@ -251,3 +251,55 @@ function createPetals() {
 
 // Jalankan fungsi saat web dimuat
 createPetals();
+
+// --- 7. LOGIKA WEDDING GIFT (TOGGLE & COPY) ---
+const btnToggleGift = document.getElementById("btn-toggle-gift");
+const giftContainer = document.getElementById("gift-container");
+
+if (btnToggleGift && giftContainer) {
+  btnToggleGift.addEventListener("click", function () {
+    // Menambah atau menghapus class 'hidden'
+    giftContainer.classList.toggle("hidden");
+
+    // Ubah teks tombol sesuai kondisi
+    if (giftContainer.classList.contains("hidden")) {
+      btnToggleGift.innerHTML = "🎁 Kirim Hadiah";
+    } else {
+      btnToggleGift.innerHTML = "Tutup";
+    }
+  });
+}
+
+// Fitur Salin (Copy) Rekening
+const copyButtons = document.querySelectorAll(".btn-copy");
+
+copyButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    // Ambil angka dari atribut data-rek
+    const rekNumber = this.getAttribute("data-rek");
+
+    // API Clipboard untuk menyalin teks
+    navigator.clipboard
+      .writeText(rekNumber)
+      .then(() => {
+        // Simpan teks asli
+        const originalText = this.innerText;
+
+        // Ubah tombol jadi "Tersalin!" dan warnanya jadi hijau
+        this.innerText = "Tersalin!";
+        this.style.backgroundColor = "#2ecc71"; // Warna Hijau Sukses
+
+        // Kembalikan ke keadaan semula setelah 2 detik
+        setTimeout(() => {
+          this.innerText = originalText;
+          this.style.backgroundColor = "var(--color-primary)";
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Gagal menyalin teks: ", err);
+        alert(
+          "Browser kamu tidak mendukung fitur copy otomatis. Silakan copy manual.",
+        );
+      });
+  });
+});
