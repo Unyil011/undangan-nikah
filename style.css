@@ -829,3 +829,38 @@ body {
 .ig-link:hover .ig-logo {
   stroke: var(--color-primary);
 }
+
+/* =========================================
+   TURUT MENGUNDANG (VERTIKAL / ATAS-BAWAH)
+   ========================================= */
+
+.mengundang-container-vertikal {
+  display: flex;
+  flex-direction: column; /* Memaksa susunan menjadi atas-bawah */
+  gap: 15px; /* Jarak antar grup */
+  margin-top: 20px;
+}
+
+.mengundang-grup {
+  text-align: center;
+}
+
+.mengundang-subtitle {
+  font-family: var(--font-heading);
+  font-size: 18px; /* Sedikit lebih besar dari sebelumnya */
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  font-style: italic;
+  display: inline-block;
+}
+
+.mengundang-grup .honored-guests {
+  font-size: 14px; /* Ukuran font dikembalikan normal */
+  line-height: 1.8;
+  padding: 0;
+  list-style: none; /* Pastikan tidak ada titik (bullet) bawaan */
+}
+
+.mengundang-grup .honored-guests li {
+  margin-bottom: 5px; /* Jarak antar nama */
+}
