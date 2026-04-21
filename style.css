@@ -91,7 +91,7 @@ body {
   font-family: var(--font-heading);
   font-size: 14px;
   letter-spacing: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   text-transform: uppercase;
   color: #f3e5ab; /* Warna Emas Muda / Krem agar kontras di biru */
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Bayangan halus */
@@ -134,8 +134,8 @@ body {
     0.75
   ); /* Biru gelap transparan kontras dgn baju putih */
   border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,8 +163,8 @@ body {
 .guest-info-new {
   background: rgba(30, 58, 95, 0.85); /* Biru gelap transparan */
   border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   border-radius: var(--radius-glass);
   padding: 15px 30px;
   margin-bottom: 25px;
