@@ -44,31 +44,29 @@ body {
 }
 
 /* =========================================
-   cover
+   COVER UPDATE (DENGAN FOTO BG & DARK GLASS)
    ========================================= */
 
 #cover-page {
-  /* Menghapus background gambar */
   background: none;
-  /* Membiarkan transparan agar animasi blobs (bulatan bergerak) di belakangnya terlihat */
+  position: relative;
+  overflow: hidden;
 }
 
-/* Sembunyikan cover-gradient karena kita tidak butuh efek gelap lagi */
-.cover-gradient,
-.cover-overlay {
-  display: none;
+/* FOTO BACKGROUND PASANGAN */
+.cover-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Fokus agak ke atas agar wajah tidak terpotong di layar HP */
+  object-position: center top;
+  z-index: 1;
 }
 
-.full-height {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
-}
-
+/* Memisah atas dan bawah agar wajah di tengah tidak tertutup teks */
 .cover-content {
   position: relative;
   z-index: 2;
@@ -76,27 +74,27 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Mengubah ini agar konten lebih berkumpul di tengah */
+  justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
+  padding: 60px 20px 40px; /* Jarak napas atas bawah */
   text-align: center;
 }
 
-/* --- POSISI ATAS --- */
+/* --- POSISI ATAS (Di Latar Biru) --- */
 .cover-top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px; /* Memberi jarak ke hitungan mundur */
 }
 
 .subtitle-new {
   font-family: var(--font-heading);
-  font-size: 13px;
-  letter-spacing: 3px;
+  font-size: 14px;
+  letter-spacing: 4px;
   margin-bottom: 10px;
   text-transform: uppercase;
-  color: #f784c5; /* Warna biru redup */
+  color: #f3e5ab; /* Warna Emas Muda / Krem agar kontras di biru */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Bayangan halus */
 }
 
 .title-names-new {
@@ -105,10 +103,11 @@ body {
   font-style: italic;
   font-weight: normal;
   line-height: 1.1;
-  color: var(--color-primary); /* Warna biru tema */
+  color: #ffffff; /* Putih terang */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Bayangan kuat agar sangat jelas */
 }
 
-/* --- POSISI BAWAH --- */
+/* --- POSISI BAWAH (Di Latar Baju Putih) --- */
 .cover-bottom {
   width: 100%;
   display: flex;
@@ -116,28 +115,33 @@ body {
   align-items: center;
 }
 
-/* --- HITUNGAN MUNDUR (KACA TERANG) --- */
+/* --- HITUNGAN MUNDUR (Kaca Biru Gelap) --- */
 .countdown-circles {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .circle {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background: var(--glass-bg); /* Kaca bening/putih transparan */
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: rgba(
+    30,
+    58,
+    95,
+    0.75
+  ); /* Biru gelap transparan kontras dgn baju putih */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: var(--glass-shadow);
-  color: var(--color-primary); /* Angka warna biru */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #ffffff; /* Teks putih */
 }
 
 .circle span {
@@ -145,6 +149,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   line-height: 1;
+  color: #ffffff;
 }
 
 .circle p {
@@ -154,52 +159,54 @@ body {
   letter-spacing: 1px;
 }
 
-/* --- INFO TAMU (KOTAK KACA TERANG) --- */
+/* --- INFO TAMU (Kaca Biru Gelap) --- */
 .guest-info-new {
-  background: var(--glass-bg); /* Kaca bening */
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: rgba(30, 58, 95, 0.85); /* Biru gelap transparan */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-radius: var(--radius-glass);
-  padding: 20px 30px;
+  padding: 15px 30px;
   margin-bottom: 25px;
   width: 85%;
   max-width: 320px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   font-size: 13px;
   line-height: 1.6;
-  color: var(--text-dark); /* Warna teks isi pakai biru gelap */
+  color: #ffffff; /* Teks putih */
 }
 
 .guest-info-new p {
   margin: 0;
+  opacity: 0.9;
 }
 
 .guest-info-new h3 {
   font-family: var(--font-heading);
   font-size: 24px;
   margin: 10px 0;
-  color: var(--color-primary); /* Nama tamu pakai warna primary */
+  color: #f3e5ab; /* Nama tamu warna Emas Muda biar mewah */
 }
 
 /* --- TOMBOL COVER --- */
 #btn-buka {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary); /* Biru asli tema */
   color: #ffffff;
-  border: 1px solid var(--glass-border);
+  border: 2px solid #ffffff; /* Border putih agar makin Pop Out */
   padding: 12px 40px;
   font-size: 14px;
   font-family: var(--font-body);
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
 }
 
 #btn-buka:hover {
   background-color: #2e5a90;
+  transform: translateY(-3px);
 }
 
 /* =========================================
@@ -863,4 +870,159 @@ body {
 
 .mengundang-grup .honored-guests li {
   margin-bottom: 5px; /* Jarak antar nama */
+}
+
+/* =========================================
+   GALERI POLAROID & LIGHTBOX
+   ========================================= */
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Sembunyikan foto yang keluar batas */
+  padding: 40px 0;
+  margin-top: 20px;
+}
+
+/* Tali Jemuran */
+.hanging-string {
+  position: absolute;
+  top: 50px; /* Sesuaikan tinggi tali */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #8b5a2b; /* Warna coklat tali */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  /* Animasi jalan 20 detik, linear biar stabil, infinite biar terus menerus */
+  animation: scrollGallery 20s linear infinite;
+}
+
+/* Pause animasi saat di-hover biar gampang diklik */
+.gallery-container:hover .gallery-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollGallery {
+  0% {
+    transform: translateX(0);
+  }
+  /* Geser ke kiri setengah dari total lebar (karena ada 2 set foto) */
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.polaroid {
+  position: relative;
+  background: white;
+  padding: 10px 10px 30px 10px; /* Bawahnya lebih lebar ala polaroid */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  cursor: pointer;
+  z-index: 2;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  width: 150px; /* Ukuran polaroid */
+  flex-shrink: 0;
+}
+
+.polaroid:hover {
+  transform: scale(1.05) translateY(-10px) !important; /* Efek membesar saat disentuh */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover; /* Agar foto tidak gepeng */
+  border: 1px solid #eee;
+}
+
+/* Jepitan Kayu Palsu (CSS murni) */
+.peg {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 25px;
+  background-color: #dcb37b; /* Warna kayu */
+  border-radius: 2px;
+  border: 1px solid #b88645;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+/* --- LIGHTBOX (Untuk Zoom Foto) --- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.85
+  ); /* Agak gelap tapi masih transparan dikit */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Animasi layar hitamnya muncul perlahan */
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.lightbox.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#lightbox-img {
+  max-width: 90%;
+  max-height: 80vh;
+  border: 5px solid white;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+
+  /* AWAL: Foto dimulai dari ukuran setengah (0.5) */
+  transform: scale(0.5);
+  /* Animasi membesarnya mulus dan agak melambat di akhir (ease-out) */
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* AKHIR: Saat class hidden dicabut, foto membesar ke ukuran normal (1) */
+.lightbox:not(.hidden) #lightbox-img {
+  transform: scale(1);
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Tombol silang / close ikut membesar sedikit saat disentuh */
+.close-lightbox:hover {
+  color: var(--color-primary);
+  transform: scale(1.2);
 }

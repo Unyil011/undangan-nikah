@@ -351,3 +351,31 @@ copyButtons.forEach((button) => {
       });
   });
 });
+
+// --- 8. LOGIKA GALERI POLAROID & LIGHTBOX ---
+const lightbox = document.getElementById("lightbox-overlay");
+const lightboxImg = document.getElementById("lightbox-img");
+
+// Fungsi untuk membuka foto besar
+function openLightbox(element) {
+  // Ambil gambar (img) yang ada di dalam kotak polaroid yang di-klik
+  const imgElement = element.querySelector("img");
+
+  if (imgElement && lightbox && lightboxImg) {
+    // Copy sumber gambar ke lightbox
+    lightboxImg.src = imgElement.src;
+    // Tampilkan lightbox
+    lightbox.classList.remove("hidden");
+  }
+}
+
+// Fungsi untuk menutup foto besar
+function closeLightbox() {
+  if (lightbox) {
+    lightbox.classList.add("hidden");
+    // Hilangkan src sejenak agar animasi tertutup rapi
+    setTimeout(() => {
+      lightboxImg.src = "";
+    }, 300);
+  }
+}
